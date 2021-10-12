@@ -2,5 +2,9 @@
 
 Repositorio para las practicas de la asignatura
 
-- [Practica 1](Practica1/Readme.md)
+**Autor**: Alberto Cruz Luis
+
+### Practica 1
+- [Articulos](Practica1/Articulos.md)
+- [Supuesto Proyecto](Practica1/SupuestoProyecto.md)
 
