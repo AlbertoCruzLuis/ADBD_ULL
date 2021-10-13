@@ -4,6 +4,8 @@ Repositorio para las practicas de la asignatura
 
 **Autor**: Alberto Cruz Luis
 
+**Autor**: Cristo Garcia Gonzalez
+
 ### Practica 1
 - [Articulos](Practica1/Articulos.md)
 - [Supuesto Proyecto](Practica1/SupuestoProyecto.md)
