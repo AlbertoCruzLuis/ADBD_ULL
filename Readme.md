@@ -10,3 +10,6 @@ Repositorio para las practicas de la asignatura
 - [Articulos](Practica1/Articulos.md)
 - [Supuesto Proyecto](Practica1/SupuestoProyecto.md)
 
+### Practica 3
+ - [Modelo Logico-Relacional Viveros](Practica3/Readme.md)
+

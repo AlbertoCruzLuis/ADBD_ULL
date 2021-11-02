@@ -14,65 +14,74 @@
 DROP DATABASE IF EXISTS viverosDB;
 CREATE DATABASE viverosDB;
 
+DROP SCHEMA IF EXISTS viverosDB;
+CREATE SCHEMA viverosDB;
+
 -- -----------------------------------------------------
--- Table viverosDB.Viveros
+-- Table viverosDB.iveros
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS viverosDB.VIVERO;
+DROP TABLE IF EXISTS viverosDB.Viveros;
 
 CREATE TABLE IF NOT EXISTS viverosDB.Viveros (
   ubicacion VARCHAR(45) NOT NULL,
-  PRIMARY KEY (ubicacion))
+  PRIMARY KEY (ubicacion));
 
 
 
 -- -----------------------------------------------------
 -- Table viverosDB.Zonas
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS viverosDB.Zonas;
+
 CREATE TABLE IF NOT EXISTS viverosDB.Zonas (
   idZonas INT NOT NULL,
   Viveros_ubicacion VARCHAR(45) NOT NULL,
   PRIMARY KEY (idZonas, Viveros_ubicacion),
-  INDEX fk_Zonas_Viveros_idx (Viveros_ubicacion ASC) VISIBLE,
   CONSTRAINT fk_Zonas_Viveros
     FOREIGN KEY (Viveros_ubicacion)
     REFERENCES viverosDB.Viveros (ubicacion)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
 
 
 
 -- -----------------------------------------------------
 -- Table viverosDB.Cliente
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS viverosDB.Cliente;
+
 CREATE TABLE IF NOT EXISTS viverosDB.Cliente (
   Dni VARCHAR(9) NOT NULL,
   email VARCHAR(45) NULL,
   credito_mensual INT NULL,
   nombre VARCHAR(45) NULL,
-  PRIMARY KEY (Dni))
+  PRIMARY KEY (Dni));
 
 
 
 -- -----------------------------------------------------
 -- Table viverosDB.Pedidos
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS viverosDB.Pedidos;
+
 CREATE TABLE IF NOT EXISTS viverosDB.Pedidos (
   codigo_venta INT NOT NULL,
   coste INT NULL,
   Cliente_Dni VARCHAR(9) NOT NULL,
   PRIMARY KEY (codigo_venta, Cliente_Dni),
-  INDEX fk_Pedidos_Cliente1_idx (Cliente_Dni ASC) VISIBLE,
   CONSTRAINT fk_Pedidos_Cliente1
     FOREIGN KEY (Cliente_Dni)
     REFERENCES viverosDB.Cliente (Dni)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
 
 
 
 -- -----------------------------------------------------
 -- Table viverosDB.Empleados
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS viverosDB.Empleados;
+
 CREATE TABLE IF NOT EXISTS viverosDB.Empleados (
   Dni VARCHAR(9) NOT NULL,
   Fecha_inicio DATE NULL,
@@ -81,8 +90,6 @@ CREATE TABLE IF NOT EXISTS viverosDB.Empleados (
   Zonas_Viveros_ubicacion VARCHAR(45) NOT NULL,
   Pedidos_codigo_venta INT NOT NULL,
   PRIMARY KEY (Dni, Zonas_idZonas, Zonas_Viveros_ubicacion, Pedidos_codigo_venta),
-  INDEX fk_Empleados_Zonas1_idx (Zonas_idZonas ASC, Zonas_Viveros_ubicacion ASC) VISIBLE,
-  INDEX fk_Empleados_Pedidos1_idx (Pedidos_codigo_venta ASC) VISIBLE,
   CONSTRAINT fk_Empleados_Zonas1
     FOREIGN KEY (Zonas_idZonas , Zonas_Viveros_ubicacion)
     REFERENCES viverosDB.Zonas (idZonas , Viveros_ubicacion)
@@ -92,13 +99,15 @@ CREATE TABLE IF NOT EXISTS viverosDB.Empleados (
     FOREIGN KEY (Pedidos_codigo_venta)
     REFERENCES viverosDB.Pedidos (codigo_venta)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
 
 
 
 -- -----------------------------------------------------
 -- Table viverosDB.Productos
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS viverosDB.Productos;
+
 CREATE TABLE IF NOT EXISTS viverosDB.Productos (
   codigo_id INT NOT NULL,
   stock INT NULL,
@@ -107,8 +116,6 @@ CREATE TABLE IF NOT EXISTS viverosDB.Productos (
   Zonas_idZonas INT NOT NULL,
   Zonas_Viveros_ubicacion VARCHAR(45) NOT NULL,
   PRIMARY KEY (codigo_id, Pedidos_codigo_venta),
-  INDEX fk_Productos_Pedidos1_idx (Pedidos_codigo_venta ASC) VISIBLE,
-  INDEX fk_Productos_Zonas1_idx (Zonas_idZonas ASC, Zonas_Viveros_ubicacion ASC) VISIBLE,
   CONSTRAINT fk_Productos_Pedidos1
     FOREIGN KEY (Pedidos_codigo_venta)
     REFERENCES viverosDB.Pedidos (codigo_venta)
@@ -118,7 +125,7 @@ CREATE TABLE IF NOT EXISTS viverosDB.Productos (
     FOREIGN KEY (Zonas_idZonas , Zonas_Viveros_ubicacion)
     REFERENCES viverosDB.Zonas (idZonas , Viveros_ubicacion)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION);
 
 
 
