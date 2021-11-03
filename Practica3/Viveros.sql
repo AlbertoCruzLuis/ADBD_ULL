@@ -127,6 +127,25 @@ CREATE TABLE IF NOT EXISTS viverosDB.Productos (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+-- -----------------------------------------------------
+-- Create function crear_email()
+-- -----------------------------------------------------
+CREATE OR REPLACE FUNCTION crear_email(IN DOMAIN VARCHAR(30)) RETURNS TRIGGER AS $$
+   BEGIN
+      IF NEW.email != NULL THEN
+        INSERT INTO viverosDB.Cliente(Dni, email, credito_mensual, nombre) VALUES (NEW.Dni, NEW.email, NEW.credito_mensual, NEW.nombre);
+      ELSE
+        NEW.email = NEW.nombre + '@' + DOMAIN;
+        INSERT INTO viverosDB.Cliente(Dni, email, credito_mensual, nombre) VALUES (NEW.Dni, NEW.email, NEW.credito_mensual, NEW.nombre);
+      RETURN NEW;
+   END;
+$$ LANGUAGE plpgsql;
+
+-- -----------------------------------------------------
+-- Trigger trigger_crear_email_before_insert
+-- -----------------------------------------------------
+CREATE TRIGGER trigger_crear_email_before_insert BEFORE INSERT ON viverosDB.Cliente
+FOR EACH ROW EXECUTE PROCEDURE crear_email('gmail.com');
 
 
 -- -----------------------------------------------------
