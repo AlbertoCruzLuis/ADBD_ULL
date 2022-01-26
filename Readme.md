@@ -2,9 +2,9 @@
 
 Repositorio para las practicas de la asignatura
 
-**Autor**: Alberto Cruz Luis
-
-**Autor**: Cristo Garcia Gonzalez
+## Jaime Simeón Palomar Blumenthal - alu0101228587@ull.edu.es
+## Cristo García González - alu0101204512@ull.edu.es
+## Alberto Cruz Luis - alu0101217734@ull.edu.es 
 
 ### Practica 1
 - [Articulos](Practica1/Articulos.md)
@@ -12,4 +12,7 @@ Repositorio para las practicas de la asignatura
 
 ### Practica 3
  - [Modelo Logico-Relacional Viveros](Practica3/Readme.md)
+
+### Practica 6
+ - [Modelo Objeto-Relacional Arquitectos](Practica-6-Modelo-Objeto-Relacional-Arquitectos/Readme.md)
 
